@@ -61,16 +61,16 @@ p{margin:0 0 1em;max-width:64ch}
 .top .btn{padding:8px 16px;font-size:.92rem}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:48px 0 72px}
+.hero{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center;padding:48px 0 72px}
 .hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800}
 .hero .lead{
   font-family:var(--display);font-weight:500;font-size:clamp(1.35rem,3vw,1.9rem);
   line-height:1.25;letter-spacing:-.01em;margin:20px 0 20px;max-width:24ch;
 }
-.hero{display:grid;grid-template-columns: 1fr 1.3fr;gap:40px;align-items:center;padding:48px 0 72px}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 20px}
 .links{font-family:var(--display);font-size:.98rem;display:flex;gap:20px;flex-wrap:wrap}
-.shot{display:block;width:100%;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 12px 40px rgba(23,32,54,.18)}
+/* imaginea nu e taiata: height:auto pastreaza raportul natural */
+.shot{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 12px 40px rgba(23,32,54,.18)}
 
 /* sections */
 section{padding:72px 0}
@@ -96,12 +96,10 @@ h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:12px}
 .stack{color:var(--muted);font-size:1rem;margin-top:8px}
 .stack b{font-family:var(--display);font-weight:600;color:var(--ink)}
 
-/* gallery */
+/* gallery: fara aspect-ratio fortat si fara object-fit:cover => zero taieri */
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px}
 .gallery figure{margin:0}
-.gallery figure.wide{grid-column:1/-1}
-.gallery img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:10px}
-.gallery figure.wide img{aspect-ratio:21/9}
+.gallery img{display:block;width:100%;height:auto;border-radius:10px}
 .gallery figcaption{font-family:var(--display);font-size:.95rem;color:var(--muted);margin-top:8px}
 
 /* projects */
@@ -147,7 +145,6 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;padding-top:24px}
   .feature-grid,.two,.gallery{grid-template-columns:1fr;gap:32px}
-  .gallery figure.wide img{aspect-ratio:16/10}
   .pipeline{grid-template-columns:1fr;gap:34px}
   .pipeline li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-24px;margin:0 0 0 -6px;transform:rotate(135deg)}
   .project{grid-template-columns:1fr;gap:12px;padding-bottom:52px}
@@ -193,7 +190,7 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
         </div>
       </div>
 
-      <img class="shot" src="Photos/Poza1.png" width="1600" height="900" fetchpriority="high"
+      <img class="shot" src="Photos/Poza1.png" width="1600" height="1000" fetchpriority="high"
            alt="A solar eclipse in the 3D Solar Eclipse Simulator">
     </div>
   </main>
@@ -227,27 +224,27 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
 
     <div class="gallery">
       <figure>
-        <img src="Photos/Poza2.png" width="1600" height="900" loading="lazy"
+        <img src="Photos/Poza2.png" width="1600" height="1000" loading="lazy"
              alt="The simulator interface with the eclipse catalogue and search">
         <figcaption>The simulator interface: browse and search the eclipse catalogue.</figcaption>
       </figure>
       <figure>
-        <img src="Photos/Poza3.png" width="1600" height="900" loading="lazy"
+        <img src="Photos/Poza3.png" width="1600" height="1000" loading="lazy"
              alt="Detail panel for a selected eclipse">
         <figcaption>Details for a selected eclipse.</figcaption>
       </figure>
       <figure>
-        <img src="Photos/Poza4.png" width="1600" height="900" loading="lazy"
+        <img src="Photos/Poza4.png" width="1600" height="1000" loading="lazy"
              alt="A landscape rendered with Cesium terrain">
         <figcaption>Realistic Cesium terrain.</figcaption>
       </figure>
       <figure>
-        <img src="Photos/Poza5.png" width="1600" height="900" loading="lazy"
+        <img src="Photos/Poza5.png" width="1600" height="1000" loading="lazy"
              alt="The Moon's umbra and penumbra drawn as 3D cones">
         <figcaption>The Moon's umbra and penumbra as 3D cones.</figcaption>
       </figure>
-      <figure class="wide">
-        <img src="Photos/Poza6.png" width="2100" height="900" loading="lazy"
+      <figure>
+        <img src="Photos/Poza6.png" width="1600" height="1000" loading="lazy"
              alt="Panoramic view of the night sky with stars">
         <figcaption>A panoramic view of the sky, with 5,079 stars.</figcaption>
       </figure>
