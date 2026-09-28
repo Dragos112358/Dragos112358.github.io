@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dragoș Boncan | Machine Learning, Data Science and Software Engineering</title>
+<meta name="description" content="Computer Science graduate and Data Science M.Sc. student. I build machine learning systems and real-time 3D simulations, including a released 3D solar eclipse simulator.">
+<meta name="author" content="Dragoș-Eduard-Gabriel Boncan">
+<meta name="theme-color" content="#F6F8FB">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dragoș Boncan | Machine Learning, Data Science and Software Engineering">
+<meta property="og:description" content="I build machine learning systems and real-time 3D simulations. Home of the 3D Solar Eclipse Simulator.">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%98%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F8FB;
+  --ink:#172036;
+  --muted:#4B566B;
+  --sky:#E2EBF7;
+  --line:#D3DCEA;
+  --accent:#2747C8;
+  --sun:#F4B23E;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--text);font-size:1.125rem;line-height:1.6;
+  padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);
+}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;letter-spacing:-.02em}
+p{margin:0 0 1em;max-width:64ch}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
+.top nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap;font-family:var(--display);font-size:.98rem}
+.top nav a{color:var(--ink);text-decoration:none}
+.top nav a:hover{color:var(--accent)}
+.btn{
+  display:inline-block;font-family:var(--display);font-weight:600;font-size:1rem;
+  padding:12px 20px;border-radius:8px;text-decoration:none;border:2px solid var(--ink);
+}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
+.btn.ghost{color:var(--ink);background:transparent}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.top .btn{padding:8px 16px;font-size:.92rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:48px 0 72px}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800}
+.hero .lead{
+  font-family:var(--display);font-weight:500;font-size:clamp(1.35rem,3vw,1.9rem);
+  line-height:1.25;letter-spacing:-.01em;margin:20px 0 20px;max-width:24ch;
+}
+.hero .about{color:var(--muted);max-width:52ch}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 20px}
+.links{font-family:var(--display);font-size:.98rem;display:flex;gap:20px;flex-wrap:wrap}
+.eclipse{width:100%;max-width:440px;justify-self:center;height:auto}
+.moon{animation:pass 2.6s cubic-bezier(.22,.7,.2,1) .35s both}
+.corona{transform-box:view-box;transform-origin:center;animation:glow 2.6s ease-out .35s both}
+@keyframes pass{from{transform:translate(-270px,14px)}to{transform:translate(10px,-5px)}}
+@keyframes glow{from{opacity:.2;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){
+  .moon,.corona{animation:none}
+  .moon{transform:translate(10px,-5px)}
+}
+
+/* sections */
+section{padding:72px 0}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:12px}
+.intro{color:var(--muted);margin-bottom:40px}
+
+/* featured project */
+.featured{background:var(--sky)}
+.featured .meta{color:var(--muted);margin-bottom:28px}
+.feature-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+.facts{margin:0;padding:0;list-style:none;display:grid;gap:18px}
+.facts li{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline}
+.facts b{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.facts span{color:var(--muted);line-height:1.4}
+.pipeline{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.pipeline li{position:relative;background:var(--paper);border-radius:12px;padding:22px}
+.pipeline li:not(:last-child)::after{
+  content:"";position:absolute;right:-26px;top:50%;width:12px;height:12px;margin-top:-6px;
+  border-top:3px solid var(--accent);border-right:3px solid var(--accent);transform:rotate(45deg);
+}
+.pipeline strong{display:block;font-family:var(--display);font-size:1.15rem;margin-bottom:6px}
+.pipeline span{display:block;color:var(--muted);font-size:1rem;line-height:1.45}
+.stack{color:var(--muted);font-size:1rem;margin-top:8px}
+.stack b{font-family:var(--display);font-weight:600;color:var(--ink)}
+
+/* projects */
+.project{display:grid;grid-template-columns:230px 1fr;gap:40px;padding:0 0 64px}
+.project:last-child{padding-bottom:0}
+.project h3{font-size:1.45rem;font-weight:700}
+.project .when{color:var(--muted);font-size:1rem;margin:8px 0 12px}
+.project .side a{font-family:var(--display);font-size:.98rem}
+.project ul{margin:0 0 1em;padding-left:1.15em;max-width:64ch}
+.project li{margin-bottom:.4em}
+
+/* speedup bars */
+figure.bars{margin:24px 0 8px;max-width:520px}
+figure.bars figcaption{font-family:var(--display);font-size:.95rem;color:var(--muted);margin-bottom:12px}
+.bar{display:grid;grid-template-columns:120px 1fr 56px;gap:12px;align-items:center;margin-bottom:8px;font-family:var(--display);font-size:.95rem}
+.bar i{display:block;height:14px;border-radius:7px;background:var(--line);position:relative;overflow:hidden}
+.bar i::before{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--accent);border-radius:7px}
+.bar.best i::before{background:var(--sun)}
+.bar em{font-style:normal;font-weight:700;text-align:right}
+
+/* skills & education lists */
+.defs{margin:0;display:grid;grid-template-columns:230px 1fr;gap:18px 40px}
+.defs dt{font-family:var(--display);font-weight:600}
+.defs dd{margin:0;color:var(--muted)}
+.defs dd strong{color:var(--ink);font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.entry{margin-bottom:28px}
+.entry h3{font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.entry .when{color:var(--muted);font-size:1rem;margin-bottom:6px}
+.entry p{margin-bottom:.5em}
+
+/* contact */
+.contact{background:var(--ink);color:var(--paper)}
+.contact h2{color:var(--paper)}
+.contact p{color:#C9D3E6}
+.contact a{color:#fff}
+.contact .btn.primary{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.contact .btn.primary:hover{background:#fff;border-color:#fff}
+.contact .btn.ghost{border-color:#fff;color:#fff}
+.contact .btn.ghost:hover{background:#fff;color:var(--ink)}
+footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--muted);font-family:var(--display);font-size:.92rem}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:24px}
+  .eclipse{max-width:320px;justify-self:start}
+  .feature-grid,.two{grid-template-columns:1fr;gap:32px}
+  .pipeline{grid-template-columns:1fr;gap:34px}
+  .pipeline li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-24px;margin:0 0 0 -6px;transform:rotate(135deg)}
+  .project{grid-template-columns:1fr;gap:12px;padding-bottom:52px}
+  .defs{grid-template-columns:1fr;gap:4px}
+  .defs dd{margin-bottom:14px}
+  section{padding:56px 0}
+}
+@media (max-width:480px){
+  body{font-size:1.05rem}
+  .bar{grid-template-columns:96px 1fr 48px}
+  .facts li{grid-template-columns:90px 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">Dragoș Boncan</a>
+    <nav aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+      <a class="btn ghost" href="cv.pdf">Download CV</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <h1>Dragoș<br>Boncan</h1>
+        <p class="lead">I build machine learning systems and real-time 3D simulations.</p>
+        <p class="about">Computer Science graduate (GPA 3.83/4), now studying for an M.Sc. in Data Science at Politehnica Bucharest. I'm looking for a junior role in machine learning, data science or software engineering, full-time or part-time.</p>
+        <div class="actions">
+          <a class="btn primary" href="#eclipse">See the eclipse simulator</a>
+          <a class="btn ghost" href="cv.pdf">Download CV</a>
+        </div>
+        <div class="links">
+          <a href="https://github.com/Dragos112358">GitHub</a>
+          <a href="https://www.linkedin.com/in/dragos-eduard-gabriel-boncan-837b1b354/">LinkedIn</a>
+          <a href="mailto:dragos.boncan@gmail.com">dragos.boncan@gmail.com</a>
+        </div>
+      </div>
+
+      <svg class="eclipse" viewBox="0 0 400 400" role="img" aria-label="Illustration of the Moon passing in front of the Sun, leaving a thin crescent of light">
+        <defs>
+          <radialGradient id="corona" cx="200" cy="200" r="190" gradientUnits="userSpaceOnUse">
+            <stop offset="0.48" stop-color="#F4B23E" stop-opacity="0.65"/>
+            <stop offset="0.7" stop-color="#F4B23E" stop-opacity="0.22"/>
+            <stop offset="1" stop-color="#F4B23E" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle class="corona" cx="200" cy="200" r="190" fill="url(#corona)"/>
+        <circle cx="200" cy="200" r="96" fill="#F4B23E"/>
+        <g class="moon">
+          <circle cx="200" cy="200" r="94" fill="#172036"/>
+        </g>
+      </svg>
+    </div>
+  </main>
+</div>
+
+<!-- Featured project -->
+<section class="featured" id="eclipse">
+  <div class="wrap">
+    <h2>3D Solar Eclipse Simulator</h2>
+    <p class="meta">Bachelor's thesis, January to June 2026. Released as a downloadable product.</p>
+
+    <div class="feature-grid">
+      <div>
+        <p>A real-time simulator of all four types of solar eclipse. It shows the Moon's shadow (umbra and penumbra) as 3D cones over realistic terrain, with the path of totality drawn as a 3D band on an accurate model of the Earth.</p>
+        <p>I compared five existing tools: Stellarium, Celestia, SpaceEngine, The Photographer's Ephemeris and Xavier Jubier's simulator. None of them shows these shadow cones, and most offer only 2D maps or tables.</p>
+        <p>I checked the eclipse timings against Xavier Jubier's reference tool. They were within 1 second for the 12 August 2026 eclipse and 1.5 seconds for 2 August 2027. For the 2017 eclipse, Stellarium was 8 minutes off.</p>
+        <p>The app also has a catalogue browser, time controls, bookmarks, weather effects, a Romanian and English interface, and other planet and moon systems (Jupiter, Saturn, Neptune).</p>
+        <div class="actions">
+          <a class="btn primary" href="https://gabyboncan.gumroad.com/l/txlkbg">Get the simulator</a>
+        </div>
+      </div>
+
+      <ul class="facts">
+        <li><b>71,264</b><span>eclipses computed over 30,000 years, from 13,000 BC to 17,000 AD</span></li>
+        <li><b>719</b><span>total or annular eclipses found over Romania</span></li>
+        <li><b>60 FPS</b><span>while positions stream in from Python every frame</span></li>
+        <li><b>5,079</b><span>stars processed alongside the eclipses</span></li>
+      </ul>
+    </div>
+
+    <!-- To add later: a 20-30 second video or a few screenshots of the shadow cones.
+         Place them here, between the text and the diagram. -->
+
+    <ol class="pipeline" aria-label="How the simulator works">
+      <li>
+        <strong>Python service</strong>
+        <span>Calculates positions of the Sun, Moon and Earth from Skyfield and NASA JPL DE441 data. Slow calculations run on a separate thread.</span>
+      </li>
+      <li>
+        <strong>UDP stream</strong>
+        <span>Sends the positions to the renderer every frame, so the picture stays in sync with the maths.</span>
+      </li>
+      <li>
+        <strong>Unreal Engine 5</strong>
+        <span>Draws the Cesium terrain, the WGS84 Earth model and the 3D shadow cones at 60 FPS.</span>
+      </li>
+    </ol>
+
+    <p class="stack"><b>Built with</b> Unreal Engine 5, C++, Python, Skyfield, Cesium for Unreal, JPL DE441, GeoPy, UDP, multithreading.</p>
+  </div>
+</section>
+
+<!-- Other projects -->
+<section id="projects">
+  <div class="wrap">
+    <h2>More projects</h2>
+    <p class="intro">Each one pairs a concrete problem with a measured result.</p>
+
+    <article class="project">
+      <div class="side">
+        <h3>CannyCore</h3>
+        <p class="when">Parallel edge detection. Team of 3, Oct 2025 to Jan 2026</p>
+        <a href="https://github.com/Dragos112358/Canny-Core/">Repository on GitHub</a>
+      </div>
+      <div>
+        <p>We implemented the full Canny edge-detection pipeline in C++ and parallelized it in eight variants: Pthreads, OpenMP, MPI, CUDA and four hybrids of them.</p>
+        <figure class="bars">
+          <figcaption>Speedup over the serial version on an 8000 × 8000 image</figcaption>
+          <div class="bar"><span>OpenMP</span><i style="--w:6.7%"></i><em>3.0×</em></div>
+          <div class="bar"><span>Pthreads</span><i style="--w:7.6%"></i><em>3.4×</em></div>
+          <div class="bar"><span>MPI + Pthreads</span><i style="--w:14.3%"></i><em>6.4×</em></div>
+          <div class="bar best"><span>CUDA</span><i style="--w:100%"></i><em>44.6×</em></div>
+        </figure>
+        <ul>
+          <li>On the GPU, one thread handles each pixel, the Gaussian blur uses shared memory and hysteresis is rewritten without recursion. An 8K image takes 0.18 s instead of about 8 s.</li>
+          <li>Profiling with Intel VTune, perf and Nsight Compute showed the Gaussian blur took 48.6% of the serial runtime and MPI broadcasts took 36.8% of the pure-MPI runtime. I used this to design the hybrid variants (halo rows, separable blur).</li>
+          <li>Across 7 image sizes, CPU speedups level off because the hysteresis step is sequential (Amdahl's law) and because of communication overhead.</li>
+        </ul>
+        <p class="stack"><b>Built with</b> C++, CUDA, OpenMP, MPI, Pthreads, Intel VTune, Nsight Compute, perf, Make, Git.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="side">
+        <h3>Visual classification and linguistic analysis</h3>
+        <p class="when">Computer vision and NLP, Jan 2026</p>
+        <a href="https://github.com/Dragos112358/ML-Homework-2---Sentiment-analysis-with-RNN-and-LSTM-and-image-clasification">Repository on GitHub</a>
+      </div>
+      <div>
+        <p>Two deep learning problems, built and compared in PyTorch.</p>
+        <ul>
+          <li>Compared a ResNet9 CNN with a HOG + MLP baseline on two 10-class image datasets. The CNN reached 97.2% accuracy on satellite images (26 points above the MLP) and 87.0% on ImageBits (17 points above).</li>
+          <li>Fine-tuned a pre-trained model on only 2,000 satellite images and reached 92.4%, using Mixup and CoarseDropout augmentation.</li>
+          <li>Trained LSTM and RNN models for Romanian sentiment analysis on 28,946 reviews with FastText embeddings, reaching 88.5% accuracy (F1 about 0.90). The LSTM trained far more reliably than the RNN.</li>
+          <li>Automated the analysis with 7 Python modules that produce EDA, t-SNE, word clouds and training charts, and documented everything in a 140-page report.</li>
+        </ul>
+        <p class="stack"><b>Built with</b> Python, PyTorch, Albumentations, FastText, AdamW, OneCycleLR, scikit-learn, Matplotlib, pandas.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="side">
+        <h3>Predictive regression systems</h3>
+        <p class="when">Statistical modeling, Nov 2025</p>
+        <a href="https://github.com/Dragos112358/ML_homework_1">Repository on GitHub</a>
+      </div>
+      <div>
+        <p>I benchmarked 7 regression models with 5-fold cross-validation on used-car prices (23,734 Autovit listings) and bike-rental demand (10,886 records).</p>
+        <ul>
+          <li>For car prices, a polynomial SVR beat the linear baseline (R-squared 0.94 against 0.84). Random Forest overfitted: 0.95 on training data, 0.79 on test data.</li>
+          <li>For bike demand, Gradient Boosting reached an MAE of 22, against 41 for Linear Regression.</li>
+          <li>Adding recent-history features (previous day and week, rolling averages) raised Random Forest to an R-squared of 0.98 and an MAE of 6.8.</li>
+          <li>Data preparation included EDA, missing-value imputation, Isolation Forest outlier removal, log-transforms and 34 engineered features.</li>
+        </ul>
+        <p class="stack"><b>Built with</b> Python, scikit-learn, pandas, NumPy, seaborn, joblib.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="side">
+        <h3>AI medical diagnosis assistant</h3>
+        <p class="when">Semantic search, Jun to Sep 2025</p>
+        <a href="https://github.com/Dragos112358/Computer_vision">Repository on GitHub</a>
+      </div>
+      <div>
+        <p>An educational prototype, built during the 3DPUB Summer School, that turns free-text symptoms into a list of likely conditions. It uses Sentence Transformers embeddings, K-Nearest Neighbors with cosine similarity and PCA for speed. Model caching and an offline TF-IDF fallback keep it working without a network, and a desktop chatbot (Gradio and PyWebView) wraps it.</p>
+        <p class="stack"><b>Built with</b> Python, Sentence Transformers, scikit-learn, pandas, NumPy, joblib, Gradio, PyWebView.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="side">
+        <h3>Sokoban solver</h3>
+        <p class="when">Search and optimization, Mar 2025</p>
+        <a href="https://github.com/Dragos112358/Tema_1_IA_Sokoban">Repository on GitHub</a>
+      </div>
+      <div>
+        <p>A push-only Sokoban solver using LRTA* and obstacle-aware A* and BFS heuristics, with deadlock detection. It solves 8 of 9 benchmark maps in under 14 seconds each.</p>
+        <ul>
+          <li>LRTA* explored up to 13 times fewer states than Simulated Annealing (5,351 against more than 70,000).</li>
+          <li>Solution paths were 48 to 87% shorter, 69% on average. A Tkinter viewer replays each solution step by step.</li>
+        </ul>
+        <p class="stack"><b>Built with</b> Python, Tkinter, A*, BFS, LRTA*, Simulated Annealing.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" style="background:var(--sky)">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="intro">The tools I've used in the projects above.</p>
+    <dl class="defs">
+      <dt>Machine learning and data</dt>
+      <dd>PyTorch, scikit-learn, pandas, NumPy, Albumentations, CNN, RNN and LSTM, NLP, computer vision, transfer learning, regression, cross-validation, hyperparameter tuning, EDA, feature engineering, FastText, Sentence Transformers, semantic search, PCA, TF-IDF</dd>
+      <dt>Computer graphics and 3D</dt>
+      <dd>Unreal Engine 5, Cesium for Unreal, 3D simulation, astronomical computation (Skyfield, JPL DE441)</dd>
+      <dt>Software engineering</dt>
+      <dd>Data structures and algorithms, OOP, multithreading, UDP networking, search algorithms (A*, BFS, LRTA*, Simulated Annealing)</dd>
+      <dt>Parallel and GPU computing</dt>
+      <dd>CUDA, OpenMP, MPI, Pthreads, Intel VTune, Nsight Compute, perf</dd>
+      <dt>Programming languages</dt>
+      <dd>Python, C++, C, SQL, Java, Kotlin, Bash, HTML</dd>
+      <dt>Tools and platforms</dt>
+      <dd>Git, GitHub, PyCharm, IntelliJ, Linux, Windows</dd>
+      <dt>Spoken languages</dt>
+      <dd>Romanian (native), English (B2), French (A2 to B1)</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Background -->
+<section id="background">
+  <div class="wrap two">
+    <div>
+      <h2>Education</h2>
+      <div class="entry">
+        <h3>M.Sc. in Data Science</h3>
+        <p class="when">Politehnica Bucharest, Sep 2026 to present</p>
+        <p>Admitted early, in May 2026.</p>
+      </div>
+      <div class="entry">
+        <h3>B.Sc. in Computer Science</h3>
+        <p class="when">Politehnica Bucharest, Oct 2022 to Jul 2026. GPA 3.83/4</p>
+        <p>Coursework: Data Structures and Algorithms, OOP, Parallel and Distributed Algorithms, Operating Systems, Programming Paradigms, Communication Protocols, Advanced Graphic Programming, Machine Learning.</p>
+      </div>
+      <div class="entry">
+        <h3>Saint Sava National College</h3>
+        <p class="when">Sep 2018 to Jun 2022</p>
+      </div>
+    </div>
+
+    <div>
+      <h2>Recognition</h2>
+      <div class="entry">
+        <h3>Honorable mention</h3>
+        <p class="when">Scientific Communications Session for Students, May 2026</p>
+        <p>Presented the eclipse simulator, which I later released as a downloadable product.</p>
+      </div>
+      <div class="entry">
+        <h3>Three national prizes, 2021</h3>
+        <p>1st prize, National Physics Contest "Phi". 3rd prize, "Gazeta Matematică" National Olympiad. 3rd prize, National Physics Olympiad.</p>
+      </div>
+      <div class="entry">
+        <h3>3DPUB Summer School</h3>
+        <p class="when">Computer Graphics, Jun to Sep 2025</p>
+      </div>
+      <div class="entry">
+        <h3>ECDL Standard Certificate</h3>
+        <p class="when">7 modules, 2021</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>I'm open to junior Machine Learning Engineer, Data Scientist and Software Engineer roles, full-time or part-time. Email is the fastest way to reach me.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:dragos.boncan@gmail.com">dragos.boncan@gmail.com</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/dragos-eduard-gabriel-boncan-837b1b354/">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/Dragos112358">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Dragoș-Eduard-Gabriel Boncan</div>
+</footer>
+
+</body>
+</html>
