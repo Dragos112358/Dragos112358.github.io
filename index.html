@@ -100,7 +100,6 @@ h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:12px}
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px}
 .gallery figure{margin:0}
 .gallery img{display:block;width:100%;height:auto;border-radius:10px}
-.gallery figure.solo{grid-column:1/-1;width:calc(50% - 12px);justify-self:center}
 .gallery figcaption{font-family:var(--display);font-size:.95rem;color:var(--muted);margin-top:8px}
 
 /* projects */
@@ -146,7 +145,6 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;padding-top:24px}
   .feature-grid,.two,.gallery{grid-template-columns:1fr;gap:32px}
-  .gallery figure.solo{width:100%}
   .pipeline{grid-template-columns:1fr;gap:34px}
   .pipeline li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-24px;margin:0 0 0 -6px;transform:rotate(135deg)}
   .project{grid-template-columns:1fr;gap:12px;padding-bottom:52px}
@@ -250,7 +248,7 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
              alt="Panoramic view of the night sky with stars">
         <figcaption>A panoramic view of the sky, with 5,079 stars.</figcaption>
       </figure>
-      <figure class="solo">
+      <figure>
         <img src="Photos/Poza7.png" width="1600" height="1000" loading="lazy"
              alt="Jupiter and its moons in the simulator">
         <figcaption>Jupiter, one of the other planet and moon systems.</figcaption>
