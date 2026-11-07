@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d18">
+  <title>3D Eclipse Simulator – Open-Source Solar & Lunar Eclipse Software</title>
+  <meta name="description" content="Explore 71,264 solar and 72,272 lunar eclipses in an open-source 3D simulator built with Unreal Engine 5, Cesium for Unreal, Python, Skyfield and JPL DE441.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://dragos112358.github.io/eclipse-simulator/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="3D Eclipse Simulator – Explore 30,000 Years of Eclipses">
+  <meta property="og:description" content="A real-time 3D scientific visualization application for solar and lunar eclipses, combining Unreal Engine 5, Cesium, Python and JPL DE441.">
+  <meta property="og:url" content="https://dragos112358.github.io/eclipse-simulator/">
+  <meta property="og:image" content="https://dragos112358.github.io/Photos/Poza5.png">
+  <meta property="og:image:alt" content="Three-dimensional lunar umbra and penumbra shadow cones rendered over Earth">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3D Eclipse Simulator">
+  <meta name="twitter:description" content="Explore 30,000 years of solar and lunar eclipses in real-time 3D.">
+  <meta name="twitter:image" content="https://dragos112358.github.io/Photos/Poza5.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "3D Eclipse Simulator",
+    "applicationCategory": "EducationalApplication",
+    "applicationSubCategory": "Scientific visualization software",
+    "operatingSystem": "Windows 10, Windows 11",
+    "description": "An open-source, real-time 3D simulator for solar and lunar eclipses, built with Unreal Engine 5, Cesium for Unreal, Python, Skyfield and JPL DE441 ephemerides.",
+    "url": "https://dragos112358.github.io/eclipse-simulator/",
+    "downloadUrl": "https://gabyboncan.gumroad.com/l/txlkbg",
+    "isAccessibleForFree": true,
+    "image": "https://dragos112358.github.io/Photos/Poza5.png",
+    "license": "https://github.com/Dragos112358/Eclipse-Simulator-3D/blob/main/LICENSE",
+    "author": {
+      "@type": "Person",
+      "name": "Dragos Boncan",
+      "url": "https://github.com/Dragos112358"
+    },
+    "featureList": [
+      "71,264 solar eclipses and 72,272 lunar eclipses from 13,000 BC to 17,000 AD",
+      "3D umbra, penumbra and antumbra shadow geometry",
+      "WGS84 ellipsoid and Cesium real-world terrain",
+      "Solar eclipse contact times C1-C4",
+      "Astronomical backend using Python, Skyfield and JPL DE441",
+      "Lunar limb elevation model trained using NASA LRO/LOLA data"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "url": "https://gabyboncan.gumroad.com/l/txlkbg",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080d18;
+      --panel: #111a2a;
+      --panel-2: #172338;
+      --text: #edf3ff;
+      --muted: #a9b7cc;
+      --line: rgba(174, 196, 226, .17);
+      --blue: #75baff;
+      --cyan: #70e0e0;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 50% -20%, #1a3151 0, var(--bg) 55%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { display: block; max-width: 100%; height: auto; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(8, 13, 24, .88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { color: var(--text); font-weight: 750; letter-spacing: .01em; white-space: nowrap; }
+    .navlinks { display: flex; flex-wrap: wrap; gap: 18px; font-size: .92rem; }
+    .navlinks a { color: var(--muted); }
+    .hero { padding: 74px 0 52px; text-align: center; }
+    .eyebrow { color: var(--cyan); text-transform: uppercase; letter-spacing: .16em; font-weight: 700; font-size: .78rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.7rem); line-height: 1.05; letter-spacing: -.045em; margin: 16px 0; }
+    .lead { max-width: 850px; margin: 0 auto; color: #c5d1e3; font-size: clamp(1.05rem, 2vw, 1.28rem); }
+    .techline { margin: 22px 0 28px; color: var(--muted); font-size: .92rem; }
+    .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 26px 0 34px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 19px; border: 1px solid var(--line); border-radius: 999px; color: var(--text); font-weight: 700; background: var(--panel); }
+    .btn.primary { color: #07111e; background: linear-gradient(135deg, #89d6ff, #7ce5dc); border-color: transparent; }
+    .hero-image { width: 100%; max-height: 590px; object-fit: contain; border: 1px solid var(--line); border-radius: 18px; background: #03060c; box-shadow: 0 28px 90px rgba(0,0,0,.42); }
+    .caption { color: var(--muted); font-size: .85rem; margin-top: 10px; }
+    section { padding: 58px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.2; letter-spacing: -.025em; margin: 0 0 14px; }
+    h3 { font-size: 1.13rem; margin: 0 0 8px; }
+    .section-intro { color: var(--muted); max-width: 800px; margin: 0 0 28px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
+    .stat { background: linear-gradient(145deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: 14px; padding: 22px 16px; text-align: center; }
+    .stat strong { display: block; font-size: clamp(1.45rem, 3vw, 2.15rem); line-height: 1.2; color: #fff; }
+    .stat span { color: var(--muted); font-size: .88rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .card { overflow: hidden; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+    .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #02050a; }
+    .card-body { padding: 18px; }
+    .card-body p { color: var(--muted); margin: 0; }
+    .feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .feature { padding: 18px; border: 1px solid var(--line); background: rgba(17, 26, 42, .72); border-radius: 14px; }
+    .feature p { color: var(--muted); margin: 5px 0 0; }
+    .video { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .architecture { padding: 22px; border: 1px solid var(--line); background: var(--panel); border-radius: 16px; overflow-x: auto; }
+    .architecture pre { margin: 0; color: #cfe4ff; font: .9rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .note { border-left: 3px solid var(--cyan); background: rgba(112,224,224,.07); padding: 15px 18px; color: #c9d8e8; border-radius: 0 10px 10px 0; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; }
+    footer { padding: 34px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .navlinks { gap: 12px; }
+      .hero { padding-top: 48px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .grid-2, .feature-list { grid-template-columns: 1fr; }
+      section { padding: 42px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">🌑 3D Eclipse Simulator</a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#demos">Demos</a>
+        <a href="#science">Science</a>
+        <a href="#download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero" id="overview">
+      <div class="eyebrow">Open-source scientific visualization</div>
+      <h1>Explore 30,000 Years of Eclipses in Real-Time 3D</h1>
+      <p class="lead">A real-time solar and lunar eclipse simulator that reveals the geometry behind an eclipse: the Moon’s umbra, penumbra and antumbra rendered as three-dimensional geometry over a geographically accurate Earth.</p>
+      <p class="techline">Built with Unreal Engine 5.7 · Cesium for Unreal · C++ · Python · Skyfield · JPL DE441</p>
+      <div class="actions">
+        <a class="btn primary" href="https://gabyboncan.gumroad.com/l/txlkbg">⬇ Download free</a>
+        <a class="btn" href="https://github.com/Dragos112358/Eclipse-Simulator-3D">⌘ Explore source code</a>
+        <a class="btn" href="https://www.youtube.com/watch?v=sYdvDpyHnCw">▶ Watch trailer</a>
+      </div>
+      <a href="https://github.com/Dragos112358/Eclipse-Simulator-3D">
+        <img class="hero-image" src="../Photos/Poza5.png" alt="The Moon's umbra and penumbra represented as three-dimensional shadow cones over Earth" fetchpriority="high">
+      </a>
+      <p class="caption">The Moon’s shadow geometry: 3D umbra and penumbra interacting with the Earth model.</p>
+      <div class="stats" aria-label="Project statistics">
+        <div class="stat"><strong>71,264</strong><span>Solar eclipses</span></div>
+        <div class="stat"><strong>72,272</strong><span>Lunar eclipses</span></div>
+        <div class="stat"><strong>30,000</strong><span>Years covered</span></div>
+        <div class="stat"><strong>5,079</strong><span>Naked-eye stars</span></div>
+      </div>
+    </div>
+
+    <section id="difference">
+      <div class="wrap">
+        <h2>See the geometry, not just the eclipse path</h2>
+        <p class="section-intro">Many eclipse resources present a 2D path on a map or a table of contact times. This simulator is designed to make the spatial geometry visible: explore the shadow cones, their intersection with an Earth modeled as a WGS84 ellipsoid, and the resulting path over real Cesium terrain.</p>
+        <div class="grid-2">
+          <article class="card">
+            <img src="../Photos/Poza1.png" alt="Total solar eclipse with the solar corona visible" loading="lazy">
+            <div class="card-body"><h3>Explore real eclipse events</h3><p>Browse a searchable catalogue of solar and lunar eclipses across the supported historical and future date range.</p></div>
+          </article>
+          <article class="card">
+            <img src="../Photos/Poza4.png" alt="Real-world landscape streamed using Cesium terrain" loading="lazy">
+            <div class="card-body"><h3>Explore real-world terrain</h3><p>Use free-flight navigation to move between orbital views and locations on streamed geographic terrain.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <h2>Features</h2>
+        <p class="section-intro">Astronomical computation, geospatial visualization and interactive exploration in one desktop application.</p>
+        <div class="feature-list">
+          <article class="feature"><h3>🌘 3D eclipse geometry</h3><p>Visualize umbra, penumbra and antumbra cones, together with the path of totality or annularity as a 3D band.</p></article>
+          <article class="feature"><h3>🌍 WGS84 Earth and Cesium terrain</h3><p>Place the computed shadow geometry on an Earth modeled as a WGS84 ellipsoid, with terrain and imagery streamed through Cesium for Unreal.</p></article>
+          <article class="feature"><h3>🗓️ Long-range eclipse catalogues</h3><p>Search and filter 71,264 solar and 72,272 lunar eclipses spanning 13,000 BC to 17,000 AD.</p></article>
+          <article class="feature"><h3>⏱️ Contact times and telemetry</h3><p>Explore C1–C4 contact times, magnitude, coverage, altitude, azimuth and other astronomical information.</p></article>
+          <article class="feature"><h3>📍 City visibility</h3><p>Inspect cities from which an eclipse is visible; for the 12 August 2026 solar eclipse, the documented catalogue lists 2,341 cities in 73 countries.</p></article>
+          <article class="feature"><h3>🌌 Night sky and solar system</h3><p>Explore 5,079 naked-eye stars, constellations, planets and selected natural satellites.</p></article>
+          <article class="feature"><h3>🌦️ Weather and atmosphere controls</h3><p>Experiment with configurable clouds, fog, rain and snow effects. These are visualization controls, not operational weather forecasts.</p></article>
+          <article class="feature"><h3>🌙 Lunar limb model</h3><p>A compact hash-grid neural elevation model trained on NASA LRO/LOLA data supports lunar-limb corrections. Its documented RMSE against the gridded DEM is 12.57 m.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="wrap">
+        <h2>Explore the simulator</h2>
+        <p class="section-intro">A selection of application screenshots showing its astronomical and geospatial capabilities.</p>
+        <div class="grid-2">
+          <article class="card"><img src="../Photos/Poza2.png" alt="Eclipse catalogue interface with search and filters" loading="lazy"><div class="card-body"><h3>Eclipse catalogue</h3><p>Browse and filter the solar and lunar eclipse catalogues.</p></div></article>
+          <article class="card"><img src="../Photos/Poza3.png" alt="Details panel for a selected eclipse" loading="lazy"><div class="card-body"><h3>Eclipse details</h3><p>Inspect local eclipse information and visibility details.</p></div></article>
+          <article class="card"><img src="../Photos/Poza6.png" alt="Night sky with stars rendered by the simulator" loading="lazy"><div class="card-body"><h3>Night sky</h3><p>A star field with 5,079 naked-eye stars and constellation visualization.</p></div></article>
+          <article class="card"><img src="../Photos/Poza7.png" alt="Jupiter and its moons in the simulator" loading="lazy"><div class="card-body"><h3>Planets and natural satellites</h3><p>Explore additional planetary systems using ephemeris data.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="demos">
+      <div class="wrap">
+        <h2>Demo videos</h2>
+        <p class="section-intro">Watch the short trailer or a longer walkthrough of the application.</p>
+        <div class="grid-2">
+          <article class="card"><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/sYdvDpyHnCw" title="3D Eclipse Simulator trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="card-body"><h3>3D Eclipse Simulator — Trailer</h3><p>A short overview of the simulator and its 3D visualization capabilities.</p></div></article>
+          <article class="card"><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/clGfikjfNSE" title="3D Eclipse Simulator full demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="card-body"><h3>3D Eclipse Simulator — Full demo</h3><p>A longer walkthrough of the application and its features.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="science">
+      <div class="wrap">
+        <h2>Scientific methods and validation</h2>
+        <p class="section-intro">The simulator combines ephemeris data with custom geometry and numerical procedures. The figures below describe documented tests; they should not be interpreted as a universal accuracy guarantee across the full 30,000-year interval.</p>
+        <div class="grid-2">
+          <article class="feature"><h3>JPL DE441 and Skyfield</h3><p>Celestial positions are obtained from JPL DE441 ephemerides through the Skyfield Python library.</p></article>
+          <article class="feature"><h3>WGS84 cone–ellipsoid intersection</h3><p>The shadow geometry is intersected with an ellipsoidal Earth model rather than assuming a perfect sphere.</p></article>
+          <article class="feature"><h3>Time scales and ΔT</h3><p>The backend handles time-scale conversion and calendar reconciliation for the historical catalogue.</p></article>
+          <article class="feature"><h3>Contact-time comparisons</h3><p>Documented C1–C4 comparisons against Xavier Jubier for selected total solar eclipses (1999, 2026 and 2027) show maximum differences of up to 1.7 seconds across the tested cases.</p></article>
+        </div>
+        <div class="note" style="margin-top:18px">Validation is limited to the documented events and locations. The application does not claim one-second independent validation for every eclipse over the entire catalogue range. See the repository’s validation files for comparison data and methodology.</div>
+        <p style="margin-top:22px">For the implementation details, reproducibility materials, limitations and installation instructions, see the public source repository.</p>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="wrap">
+        <h2>How it works</h2>
+        <p class="section-intro">A two-tier architecture keeps astronomical computation separate from real-time rendering.</p>
+        <div class="architecture"><pre>┌────────────────────────────────┐       UDP       ┌────────────────────────────────┐
+│ Unreal Engine 5                │ ◀─────────────▶ │ Python backend                 │
+│ C++ · UI · rendering · Cesium  │                 │ Skyfield · JPL DE441 · geometry│
+│ camera · effects · telemetry   │                 │ contact times · city visibility│
+└────────────────────────────────┘                 └────────────────────────────────┘</pre></div>
+        <p class="section-intro" style="margin-top:16px;margin-bottom:0">The Python backend computes astronomical data and sends compact binary UDP packets to Unreal Engine. Unreal Engine renders the scene and Cesium provides geospatial terrain and imagery.</p>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="wrap">
+        <h2>Download, inspect the source and get involved</h2>
+        <p class="section-intro">The application is free to download, and the project source is publicly available under the Apache License 2.0, subject to the repository’s third-party asset notices.</p>
+        <div class="actions" style="justify-content:flex-start">
+          <a class="btn primary" href="https://gabyboncan.gumroad.com/l/txlkbg">⬇ Download on Gumroad</a>
+          <a class="btn" href="https://dragosboncan.itch.io/3d-eclipse-simulator">🎮 Get it on itch.io</a>
+          <a class="btn" href="https://github.com/Dragos112358/Eclipse-Simulator-3D">⌘ GitHub repository</a>
+        </div>
+        <div class="note">The desktop application targets Windows and requires an internet connection for Cesium terrain and imagery streaming. On first run, users need their own Cesium ion access token. Follow the setup guide in the repository.</div>
+      </div>
+    </section>
+
+    <section id="about-author">
+      <div class="wrap">
+        <h2>About the developer</h2>
+        <p class="section-intro">Created by Dragoș Boncan, a Computer Science graduate and MSc Data Science student at the National University of Science and Technology POLITEHNICA Bucharest. The project began as a bachelor’s thesis and was developed independently.</p>
+        <div class="links">
+          <a class="btn" href="https://github.com/Dragos112358">GitHub profile</a>
+          <a class="btn" href="https://www.linkedin.com/in/dragos-eduard-gabriel-boncan-837b1b354/">LinkedIn</a>
+          <a class="btn" href="mailto:dragos.boncan@gmail.com">Email</a>
+          <a class="btn" href="https://dragos112358.github.io/">Personal portfolio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>3D Eclipse Simulator</strong> · Open-source scientific visualization project</p>
+      <p>Built with Unreal Engine 5, Cesium for Unreal, Python, Skyfield and JPL DE441.</p>
+      <p><a href="https://github.com/Dragos112358/Eclipse-Simulator-3D/blob/main/LICENSE">Apache License 2.0</a> · <a href="https://github.com/Dragos112358/Eclipse-Simulator-3D">Source code</a> · <a href="https://dragos112358.github.io/">Dragoș Boncan</a></p>
+    </div>
+  </footer>
+</body>
+</html>
