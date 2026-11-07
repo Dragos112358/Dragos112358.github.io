@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dragoș Boncan | Machine Learning, Data Science and Software Engineering</title>
-<meta name="description" content="Computer Science graduate and Data Science M.Sc. student. I build machine learning systems and real-time 3D simulations, including a released 3D solar eclipse simulator.">
+<meta name="description" content="Computer Science graduate and Data Science M.Sc. student. I build machine learning systems and real-time 3D simulations, including the open-source 3D Eclipse Simulator.">
 <meta name="author" content="Dragoș-Eduard-Gabriel Boncan">
-<meta name="theme-color" content="#F6F8FB">
+<meta name="theme-color" content="#080d18">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dragoș Boncan | Machine Learning, Data Science and Software Engineering">
-<meta property="og:description" content="I build machine learning systems and real-time 3D simulations. Home of the 3D Solar Eclipse Simulator.">
+<meta property="og:description" content="Computer Science graduate and Data Science MSc student building machine learning systems and real-time 3D simulations. Explore the open-source 3D Eclipse Simulator.">
 <meta property="og:image" content="https://dragos112358.github.io/og.png">
 <meta property="og:url" content="https://dragos112358.github.io/">
 <meta name="twitter:card" content="summary_large_image">
@@ -19,143 +19,166 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F6F8FB;
-  --ink:#172036;
-  --muted:#4B566B;
-  --sky:#E2EBF7;
-  --line:#D3DCEA;
-  --accent:#2747C8;
-  --sun:#F4B23E;
-  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --text:"Newsreader",Georgia,"Times New Roman",serif;
+  color-scheme:dark;
+  --paper:#080d18;
+  --ink:#edf3ff;
+  --muted:#a9b7cc;
+  --sky:#111a2a;
+  --line:rgba(174,196,226,.17);
+  --accent:#75baff;
+  --sun:#70e0e0;
+  --display:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --text:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:24px;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
-  margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--text);font-size:1.125rem;line-height:1.6;
-  padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);
+  margin:0;
+  background:radial-gradient(ellipse at 50% -20%,#1a3151 0,var(--paper) 55%);
+  color:var(--ink);
+  font-family:var(--text);
+  font-size:1.05rem;
+  line-height:1.7;
+  padding-left:env(safe-area-inset-left,0px);
+  padding-right:env(safe-area-inset-right,0px);
 }
 a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;letter-spacing:-.02em}
-p{margin:0 0 1em;max-width:64ch}
+a:hover{color:var(--sun);text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:4px}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;letter-spacing:-.025em;color:var(--ink)}
+p{margin:0 0 1em;max-width:70ch}
 
-/* header */
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;flex-wrap:wrap}
-.brand{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
-.top nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap;font-family:var(--display);font-size:.98rem}
-.top nav a{color:var(--ink);text-decoration:none}
-.top nav a:hover{color:var(--accent)}
+/* Header and navigation */
+.top{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:18px 0;flex-wrap:wrap;border-bottom:1px solid var(--line);
+}
+.brand{font-family:var(--display);font-weight:750;font-size:1.05rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+.top nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-family:var(--display);font-size:.94rem}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--sun)}
 .btn{
-  display:inline-block;font-family:var(--display);font-weight:600;font-size:1rem;
-  padding:12px 20px;border-radius:8px;text-decoration:none;border:2px solid var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--display);font-weight:650;font-size:.96rem;
+  padding:11px 18px;border-radius:999px;text-decoration:none;
+  border:1px solid var(--line);color:var(--ink);background:var(--sky);
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
 }
-.btn.primary{background:var(--ink);color:var(--paper)}
-.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
-.btn.ghost{color:var(--ink);background:transparent}
-.btn.ghost:hover{background:var(--ink);color:var(--paper)}
-.top .btn{padding:8px 16px;font-size:.92rem}
+.btn:hover{border-color:rgba(112,224,224,.5);transform:translateY(-1px);text-decoration:none}
+.btn.primary{color:#07111e;background:linear-gradient(135deg,#89d6ff,#7ce5dc);border-color:transparent}
+.btn.primary:hover{color:#07111e;background:linear-gradient(135deg,#a4e2ff,#a0f0e8)}
+.btn.ghost{color:var(--ink);background:transparent;border-color:var(--line)}
+.btn.ghost:hover{background:var(--panel, #111a2a);color:var(--sun)}
+.top .btn{padding:8px 14px;font-size:.88rem}
 
-/* hero */
-.hero{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center;padding:48px 0 72px}
-.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800}
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center;padding:58px 0 72px}
+.hero h1{font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800}
 .hero .lead{
-  font-family:var(--display);font-weight:500;font-size:clamp(1.35rem,3vw,1.9rem);
-  line-height:1.25;letter-spacing:-.01em;margin:20px 0 20px;max-width:24ch;
+  font-family:var(--display);font-weight:600;font-size:clamp(1.35rem,3vw,1.9rem);
+  line-height:1.25;letter-spacing:-.02em;margin:20px 0;max-width:24ch;color:#d8e8fa;
 }
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 20px}
-.links{font-family:var(--display);font-size:.98rem;display:flex;gap:20px;flex-wrap:wrap}
-/* imaginea nu e taiata: height:auto pastreaza raportul natural */
-.shot{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 12px 40px rgba(23,32,54,.18)}
+.hero .about{color:var(--muted);max-width:58ch}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 20px}
+.links{font-family:var(--display);font-size:.96rem;display:flex;gap:20px;flex-wrap:wrap}
+.shot{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line);box-shadow:0 24px 70px rgba(0,0,0,.4);background:#03060c}
 
-/* sections */
-section{padding:72px 0}
-h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:12px}
-.intro{color:var(--muted);margin-bottom:40px}
+/* Sections */
+section{padding:68px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(1.8rem,4vw,2.55rem);font-weight:750;margin-bottom:14px}
+.intro{color:var(--muted);margin-bottom:36px}
 
-/* featured project */
-.featured{background:var(--sky)}
+/* Featured project */
+.featured{background:linear-gradient(180deg,rgba(17,26,42,.94),rgba(8,13,24,.72))}
 .featured .meta{color:var(--muted);margin-bottom:28px}
+.featured h2 a{color:var(--ink);text-decoration:none}
+.featured h2 a:hover{color:var(--sun)}
 .feature-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+.feature-grid>div>p{color:#c5d1e3}
 .facts{margin:0;padding:0;list-style:none;display:grid;gap:18px}
-.facts li{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline}
-.facts b{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.facts span{color:var(--muted);line-height:1.4}
+.facts li{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.facts li:last-child{border-bottom:0}
+.facts b{font-family:var(--display);font-size:1.5rem;font-weight:750;letter-spacing:-.025em;line-height:1.1;color:#fff}
+.facts span{color:var(--muted);line-height:1.45}
 .pipeline{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
-.pipeline li{position:relative;background:var(--paper);border-radius:12px;padding:22px}
+.pipeline li{position:relative;background:var(--sky);border:1px solid var(--line);border-radius:14px;padding:22px}
 .pipeline li:not(:last-child)::after{
   content:"";position:absolute;right:-26px;top:50%;width:12px;height:12px;margin-top:-6px;
-  border-top:3px solid var(--accent);border-right:3px solid var(--accent);transform:rotate(45deg);
+  border-top:3px solid var(--sun);border-right:3px solid var(--sun);transform:rotate(45deg);
 }
-.pipeline strong{display:block;font-family:var(--display);font-size:1.15rem;margin-bottom:6px}
-.pipeline span{display:block;color:var(--muted);font-size:1rem;line-height:1.45}
-.stack{color:var(--muted);font-size:1rem;margin-top:8px}
-.stack b{font-family:var(--display);font-weight:600;color:var(--ink)}
+.pipeline strong{display:block;font-family:var(--display);font-size:1.12rem;margin-bottom:6px;color:var(--ink)}
+.pipeline span{display:block;color:var(--muted);font-size:.96rem;line-height:1.5}
+.stack{color:var(--muted);font-size:.96rem;margin-top:12px}
+.stack b{font-family:var(--display);font-weight:650;color:var(--ink)}
 
-/* gallery: fara aspect-ratio fortat si fara object-fit:cover => zero taieri */
+/* Gallery */
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px}
-.gallery figure{margin:0}
-.gallery img{display:block;width:100%;height:auto;border-radius:10px}
-.gallery figcaption{font-family:var(--display);font-size:.95rem;color:var(--muted);margin-top:8px}
+.gallery figure{margin:0;background:var(--sky);border:1px solid var(--line);border-radius:14px;overflow:hidden;padding:12px}
+.gallery img{display:block;width:100%;height:auto;border-radius:9px}
+.gallery figcaption{font-family:var(--display);font-size:.92rem;color:var(--muted);margin:10px 2px 2px}
 
-/* projects */
-.project{display:grid;grid-template-columns:230px 1fr;gap:40px;padding:0 0 64px}
-.project:last-child{padding-bottom:0}
-.project h3{font-size:1.45rem;font-weight:700}
-.project .when{color:var(--muted);font-size:1rem;margin:8px 0 12px}
-.project .side a{font-family:var(--display);font-size:.98rem}
-.project ul{margin:0 0 1em;padding-left:1.15em;max-width:64ch}
+/* Other projects */
+.project{display:grid;grid-template-columns:230px 1fr;gap:40px;padding:0 0 56px;margin-bottom:52px;border-bottom:1px solid var(--line)}
+.project:last-child{padding-bottom:0;margin-bottom:0;border-bottom:0}
+.project h3{font-size:1.35rem;font-weight:750}
+.project .when{color:var(--muted);font-size:.94rem;margin:8px 0 12px}
+.project .side a{font-family:var(--display);font-size:.94rem}
+.project p,.project li{color:#c5d1e3}
+.project ul{margin:0 0 1em;padding-left:1.15em;max-width:68ch}
 .project li{margin-bottom:.4em}
 
-/* speedup bars */
+/* Speedup bars */
 figure.bars{margin:24px 0 8px;max-width:520px}
-figure.bars figcaption{font-family:var(--display);font-size:.95rem;color:var(--muted);margin-bottom:12px}
-.bar{display:grid;grid-template-columns:120px 1fr 56px;gap:12px;align-items:center;margin-bottom:8px;font-family:var(--display);font-size:.95rem}
-.bar i{display:block;height:14px;border-radius:7px;background:var(--line);position:relative;overflow:hidden}
+figure.bars figcaption{font-family:var(--display);font-size:.92rem;color:var(--muted);margin-bottom:12px}
+.bar{display:grid;grid-template-columns:120px 1fr 56px;gap:12px;align-items:center;margin-bottom:8px;font-family:var(--display);font-size:.92rem}
+.bar i{display:block;height:14px;border-radius:7px;background:var(--panel-2, #172338);position:relative;overflow:hidden}
 .bar i::before{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--accent);border-radius:7px}
 .bar.best i::before{background:var(--sun)}
-.bar em{font-style:normal;font-weight:700;text-align:right}
+.bar em{font-style:normal;font-weight:750;text-align:right;color:var(--ink)}
 
-/* skills & education lists */
+/* Skills and education */
 .defs{margin:0;display:grid;grid-template-columns:230px 1fr;gap:18px 40px}
-.defs dt{font-family:var(--display);font-weight:600}
+.defs dt{font-family:var(--display);font-weight:650;color:var(--ink)}
 .defs dd{margin:0;color:var(--muted)}
-.defs dd strong{color:var(--ink);font-weight:600}
+.defs dd strong{color:var(--ink);font-weight:650}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
 .entry{margin-bottom:28px}
-.entry h3{font-size:1.2rem;font-weight:700;margin-bottom:4px}
-.entry .when{color:var(--muted);font-size:1rem;margin-bottom:6px}
-.entry p{margin-bottom:.5em}
+.entry h3{font-size:1.16rem;font-weight:750;margin-bottom:4px}
+.entry .when{color:var(--muted);font-size:.94rem;margin-bottom:6px}
+.entry p{margin-bottom:.5em;color:#c5d1e3}
 
-/* contact */
-.contact{background:var(--ink);color:var(--paper)}
-.contact h2{color:var(--paper)}
-.contact p{color:#C9D3E6}
-.contact a{color:#fff}
-.contact .btn.primary{background:var(--sun);border-color:var(--sun);color:var(--ink)}
-.contact .btn.primary:hover{background:#fff;border-color:#fff}
-.contact .btn.ghost{border-color:#fff;color:#fff}
-.contact .btn.ghost:hover{background:#fff;color:var(--ink)}
-footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--muted);font-family:var(--display);font-size:.92rem}
+/* Contact */
+.contact{background:linear-gradient(135deg,#111a2a,#142642);color:var(--ink)}
+.contact h2{color:var(--ink)}
+.contact p{color:#c5d1e3}
+.contact a{color:var(--blue)}
+.contact .btn.primary{color:#07111e;background:linear-gradient(135deg,#89d6ff,#7ce5dc);border-color:transparent}
+.contact .btn.primary:hover{color:#07111e}
+.contact .btn.ghost{border-color:var(--line);color:var(--ink)}
+.contact .btn.ghost:hover{background:var(--sky);color:var(--sun)}
+footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--muted);font-family:var(--display);font-size:.9rem}
 
 @media (max-width:860px){
-  .hero{grid-template-columns:1fr;padding-top:24px}
-  .feature-grid,.two,.gallery{grid-template-columns:1fr;gap:32px}
-  .pipeline{grid-template-columns:1fr;gap:34px}
-  .pipeline li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-24px;margin:0 0 0 -6px;transform:rotate(135deg)}
-  .project{grid-template-columns:1fr;gap:12px;padding-bottom:52px}
+  .hero{grid-template-columns:1fr;padding-top:32px}
+  .feature-grid,.two,.gallery{grid-template-columns:1fr;gap:28px}
+  .pipeline{grid-template-columns:1fr;gap:32px}
+  .pipeline li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-23px;margin:0 0 0 -6px;transform:rotate(135deg)}
+  .project{grid-template-columns:1fr;gap:12px;padding-bottom:42px;margin-bottom:42px}
   .defs{grid-template-columns:1fr;gap:4px}
   .defs dd{margin-bottom:14px}
-  section{padding:56px 0}
+  section{padding:52px 0}
 }
-@media (max-width:480px){
-  body{font-size:1.05rem}
+@media (max-width:560px){
+  body{font-size:1rem}
+  .wrap{padding:0 18px}
+  .top{align-items:flex-start}
+  .top nav{gap:12px}
   .bar{grid-template-columns:96px 1fr 48px}
   .facts li{grid-template-columns:90px 1fr}
+  .actions .btn{width:100%}
 }
 </style>
 </head>
@@ -165,6 +188,7 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
   <header class="top">
     <a class="brand" href="#top">Dragoș Boncan</a>
     <nav aria-label="Main">
+      <a href="/eclipse-simulator/">Eclipse Simulator</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#background">Background</a>
@@ -180,7 +204,7 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
         <p class="lead">I build machine learning systems and real-time 3D simulations.</p>
         <p class="about">Computer Science graduate (GPA 3.83/4), now studying for an M.Sc. in Data Science at Politehnica Bucharest. I'm looking for a junior role in machine learning, data science or software engineering, full-time or part-time.</p>
         <div class="actions">
-          <a class="btn primary" href="#eclipse">See the eclipse simulator</a>
+          <a class="btn primary" href="/eclipse-simulator/">Explore the Eclipse Simulator ↗</a>
           <a class="btn ghost" href="cv.pdf">Download CV</a>
         </div>
         <div class="links">
@@ -199,7 +223,7 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
 <!-- Featured project -->
 <section class="featured" id="eclipse">
   <div class="wrap">
-    <h2>3D Solar Eclipse Simulator</h2>
+    <h2><a href="/eclipse-simulator/">3D Solar Eclipse Simulator ↗</a></h2>
     <p class="meta">Bachelor's thesis, January to June 2026. Released as a downloadable product.</p>
 
     <div class="feature-grid">
@@ -209,8 +233,9 @@ footer{padding:28px 0 max(28px,env(safe-area-inset-bottom,0px));color:var(--mute
         <p>I checked the eclipse timings against Xavier Jubier's reference tool. They were within 1 second for the 12 August 2026 eclipse and 1.5 seconds for 2 August 2027. For the 2017 eclipse, Stellarium was 8 minutes off.</p>
         <p>The catalogue also covers 72,272 lunar eclipses. You can search it and see the cities on the map. The app also has time controls, bookmarks, weather effects, a Romanian and English interface, and other planet and moon systems (Jupiter, Saturn, Neptune).</p>
         <div class="actions">
-          <a class="btn primary" href="https://gabyboncan.gumroad.com/l/txlkbg">Get the simulator</a>
-          <a class="btn primary" href="https://github.com/Dragos112358/Eclipse-Simulator-3D">Source code on GitHub</a>
+          <a class="btn primary" href="/eclipse-simulator/">Project website ↗</a>
+          <a class="btn" href="https://gabyboncan.gumroad.com/l/txlkbg">Download free</a>
+          <a class="btn" href="https://github.com/Dragos112358/Eclipse-Simulator-3D">Source code on GitHub</a>
         </div>
       </div>
 
