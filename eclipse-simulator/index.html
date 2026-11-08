@@ -125,6 +125,17 @@
     .note { border-left: 3px solid var(--cyan); background: rgba(112,224,224,.07); padding: 15px 18px; color: #c9d8e8; border-radius: 0 10px 10px 0; }
     .links { display: flex; flex-wrap: wrap; gap: 12px; }
     footer { padding: 34px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    .faq-list { display: grid; gap: 12px; max-width: 920px; }
+    .faq-item { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); overflow: hidden; }
+    .faq-item summary { position: relative; cursor: pointer; list-style: none; padding: 18px 52px 18px 20px; color: var(--text); font-weight: 700; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--cyan); font-size: 1.35rem; font-weight: 500; }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-answer { padding: 0 20px 19px; color: var(--muted); }
+    .faq-answer p { margin: 0 0 10px; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-answer a { text-decoration: underline; text-underline-offset: 3px; }
+    .faq-item summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: -4px; border-radius: 12px; }
     @media (max-width: 760px) {
       .nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
       .navlinks { gap: 12px; }
@@ -146,6 +157,7 @@
         <a href="#demos">Demos</a>
         <a href="#science">Science</a>
         <a href="#download">Download</a>
+        <a href="#faq">FAQ</a>
       </nav>
     </div>
   </header>
@@ -273,6 +285,108 @@
           <a class="btn" href="https://github.com/Dragos112358/Eclipse-Simulator-3D">⌘ GitHub repository</a>
         </div>
         <div class="note">The desktop application targets Windows and requires an internet connection for Cesium terrain and imagery streaming. On first run, users need their own Cesium ion access token. Follow the setup guide in the repository.</div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <h2>Frequently asked questions</h2>
+        <p class="section-intro">Answers about the simulator’s capabilities, scientific validation, installation and technical requirements.</p>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the 3D Eclipse Simulator?</summary>
+            <div class="faq-answer">
+              <p>3D Eclipse Simulator is a free, open-source Windows desktop application for exploring solar and lunar eclipses in real time. It combines Unreal Engine 5, Cesium for Unreal, and a Python astronomy backend using Skyfield and JPL DE441 ephemerides.</p>
+              <p>Rather than showing only a flat eclipse map, it visualizes the three-dimensional umbra and penumbra geometry and the eclipse path over a WGS84 Earth model with streamed Cesium terrain.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Which types of solar and lunar eclipses can I explore?</summary>
+            <div class="faq-answer">
+              <p>The solar eclipse catalogue includes total, annular, hybrid and partial eclipses. The lunar catalogue includes penumbral partial, penumbral total, umbral partial, umbral total and umbral central eclipses.</p>
+              <p>You can search, filter and sort both catalogues, open an event in the 3D view, and inspect its available details. For lunar eclipses, the catalogue and 3D view are supported, but the application does not provide per-city lunar contact times.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How far back and forward in time does the simulator go?</summary>
+            <div class="faq-answer">
+              <p>The catalogues contain 71,264 solar eclipses and 72,272 lunar eclipses across the period from 13,000 BC to 17,000 AD, based on the project’s documented eclipse catalogue. Requests outside this date range are not supported.</p>
+              <p>The full time span should not be interpreted as a claim of uniform one-second accuracy across all dates. See the validation and limitations answers below.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How accurate are the eclipse contact times?</summary>
+            <div class="faq-answer">
+              <p>The geometric C1–C4 contact times were compared with Xavier Jubier’s published results at matching observer locations for three total solar eclipses: 11 August 1999 (maximum difference ≤ 1.7 s), 12 August 2026 (≤ 1.0 s), and 2 August 2027 at Luxor (≤ 1.3 s).</p>
+              <p>These are documented test cases, not a universal accuracy guarantee for the entire 30,000-year catalogue. Independent validation covers only the selected events. The limb-corrected contacts C1L–C4L have not been independently validated. The README also documents a ΔT extrapolation limitation that produces an approximately 21-second difference relative to Jubier for the 2038 case.</p>
+              <p>Reproducibility scripts, inputs and comparison tables are available in the <a href="https://github.com/Dragos112358/Eclipse-Simulator-3D/tree/main/validation">validation directory</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What does the lunar limb model’s 12.57 m RMSE represent?</summary>
+            <div class="faq-answer">
+              <p>The lunar limb model is a multi-resolution hash-grid neural elevation model trained using NASA’s LRO/LOLA gridded lunar elevation data. Its reported validation RMSE is 12.57 m relative to that DEM, whose native resolution is about 118 m per pixel; this is not an error measured against the true lunar surface.</p>
+              <p>The model is focused on two longitude bands of ±10° around the ±90° selenographic meridians, covering approximately 11.1% of the lunar surface. Contacts outside those trained bands, such as under extreme libration, are outside the model’s documented domain.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does the simulator work without an internet connection?</summary>
+            <div class="faq-answer">
+              <p>The Python astronomy backend can run offline once the required ephemeris files have been downloaded. The complete 3D application still needs an internet connection to stream Cesium terrain and imagery from Cesium ion and to resolve place names through the Nominatim service.</p>
+              <p>Without an internet connection, astronomical data and contact-time calculations can continue to work, but Cesium World Terrain and imagery will not load. Location lookup can fall back to GPS coordinates.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do I need my own Cesium ion access token?</summary>
+            <div class="faq-answer">
+              <p>Yes. The application uses a bring-your-own-key model: create a Cesium ion account, copy or create an access token, and paste it into Settings → Cesium API Key. The token is remembered for later sessions. Terrain streaming uses your own Cesium account, and no shared token is bundled with the application.</p>
+              <p>See the <a href="https://github.com/Dragos112358/Eclipse-Simulator-3D#controls--first-run">first-run instructions</a> in the repository.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Are the clouds and weather effects real forecasts?</summary>
+            <div class="faq-answer">
+              <p>No. Clouds, fog, rain and snow are configurable visual effects for scene visualization. They are independent of the astronomical calculations and are not operational weather forecasts or predictions of cloud cover at an eclipse location.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why might my town or village be missing from the city visibility list?</summary>
+            <div class="faq-answer">
+              <p>The catalogue’s city visibility list is calculated for the 8,133 locations included in the project’s <code>CountryPoints.csv</code>, derived from GeoNames’ <code>cities5000</code> dataset. Smaller towns and villages are not all included, so a location missing from the list may still experience the eclipse.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What operating system and hardware does the application require?</summary>
+            <div class="faq-answer">
+              <p>The packaged application targets Windows 10 and Windows 11 and requires a DirectX 12-capable GPU. The repository estimates a minimum of an Intel Core i5-equivalent CPU, 12 GB RAM and an integrated 2 GB DirectX 12 GPU. The recommended configuration is an Intel Core i9-equivalent CPU, 32 GB RAM and a dedicated GPU with at least 8 GB VRAM.</p>
+              <p>The packaged application is approximately 6 GB. The minimum hardware figures are estimates; performance and frame rate depend on the GPU and network speed.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is the 3D Eclipse Simulator free and open source?</summary>
+            <div class="faq-answer">
+              <p>Yes. The application is available as a free download, and the project source code is released under the Apache License 2.0. Some third-party software, datasets, textures and other assets remain subject to their own licenses and terms; see the repository’s <a href="https://github.com/Dragos112358/Eclipse-Simulator-3D/blob/main/docs/THIRD_PARTY.md">third-party notices</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I build the simulator from source?</summary>
+            <div class="faq-answer">
+              <p>Yes. The documented setup uses Windows 10/11, Unreal Engine 5.7, Cesium for Unreal 2.22.1, Visual Studio with the Game development with C++ workload, and Python 3.13. The ephemeris downloader requires approximately 5–6 GB of data. The repository’s installation guide contains the complete build steps and dependencies.</p>
+              <p><a href="https://github.com/Dragos112358/Eclipse-Simulator-3D#-getting-started-build-from-source">Read the build-from-source guide on GitHub</a>.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 
